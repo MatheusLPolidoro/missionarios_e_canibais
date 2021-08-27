@@ -1,0 +1,516 @@
+algoritmo "missionarios_e_canibais"
+
+var
+icanoa: vetor[1..2] de inteiro
+scanoa: vetor[1..2] de caracter
+
+dir_c, dir_m, esq_c, esq_m, lado, qtd, num, num2 : inteiro
+passageiro, spassageiro, slado, deixar, pegar, null, snum: caracter
+valido, comeu, vlrinvalido, visao: logico
+
+procedimento cabecalho() // Demonstrar as regras e objetivos ao jogador
+inicio
+limpatela
+escreval("+------------------------------------------------------------------------------+")
+escreval("|                          MISSIONÁRIOS E CANIBAIS                             |")
+escreval("+------------------------------------------------------------------------------+")
+escreval("|                                                                              |")
+escreval("|                                  OBJETIVO:                                   |")
+escreval("|  AJUDAR A TRAVESSIA DOS MISSIONÁRIOS E DOS CANIBAIS ENTRE AS MARGENS DO RIO  |")
+escreval("|                                                                              |")
+escreval("|                                   REGRAS:                                    |")
+escreval("|                1. NÃO É POSSÍVEL ATRAVESSAR COM A CANOA VAZIA                |")
+escreval("|             2. SOMENTE 2 PASSAGEIROS PODEM SUBIR NA CANOA POR VEZ            |")
+escreval("|           3. NÃO PODE DEIXAR MISSIONÁRIOS EM LOCAIS COM MAIS CANIBAIS        |")
+escreval("|                                                                              |")
+escreval("+------------------------------------------------------------------------------+")
+escreval("")
+fimprocedimento
+
+procedimento visualizacao(lado: logico)
+inicio
+escreval(" +--------------------+      +--------------------+      +--------------------+")
+escreval(" |       ESQUERDO     |      |        CANOA       |      |       DIREITO      |")
+escreval(" +--------------------+      +--------------------+      +--------------------+")
+escreval(" |                    |      |                    |      |                    |")
+escreval(" | CANIBAIS: ", esq_c, "       |      | CANIBAIS: ", contar("C"),"       |      | CANIBAIS: ", dir_c, "       |")
+escreval(" |                    |      |                    |      |                    |")
+escreval(" | MISSIONÁRIOS: ", esq_m, "   |      | MISSIONÁRIOS: ", contar("M"), "   |      | MISSIONÁRIOS: ", dir_m, "   |")
+escreval(" |                    |      |                    |      |                    |")
+escreval(" +--------------------+      +--------------------+      +--------------------+")
+se lado = verdadeiro entao
+   escreval("                                                                ( VOCÊ ) ")
+senao
+   escreval("        ( VOCÊ ) ")
+fimse
+escreval("")
+fimprocedimento
+
+procedimento validar_situacao() // Validação de situação atual dos lados, qualquer vacilo você perde!!
+inicio
+
+se (dir_c > dir_m + contar("M")) e (dir_m > 0) entao
+   comeu <- verdadeiro
+senao
+   se (esq_c > esq_m + contar("M")) e (esq_m > 0) entao
+      comeu <- verdadeiro
+   fimse
+fimse
+
+se comeu = verdadeiro entao
+   cabecalho()
+   visualizacao(falso)
+   escreval("+------------------------------------------------------------------------------+")
+   escreval("|                                VOCÊ PERDEU!!!                                |")
+   escreval("+------------------------------------------------------------------------------+")
+fimalgoritmo
+fimse
+fimprocedimento
+
+procedimento entrada_teclas(msg, pvalor, svalor, nvalor:caracter) // Validar a entrada de teclas do usuário
+inicio
+repita
+escreva(msg)
+leia(pegar)
+escolha pegar
+caso pvalor
+   valido <- verdadeiro
+caso svalor
+   valido <- verdadeiro
+caso nvalor
+   valido <- verdadeiro
+outrocaso
+   valido <- falso
+   escreval("O valor '", pegar, "' é invalido!! Tente novamente.")
+fimescolha
+ate valido = verdadeiro
+fimprocedimento
+
+procedimento entrada_teclas2(msg, pvalor, svalor, tvalor, nvalor:caracter) // Validar a entrada de teclas do usuário
+inicio
+repita
+escreva(msg)
+leia(pegar)
+escolha pegar
+caso pvalor
+   valido <- verdadeiro
+caso svalor
+   valido <- verdadeiro
+caso tvalor
+   valido <- verdadeiro
+caso nvalor
+   valido <- verdadeiro
+outrocaso
+   valido <- falso
+   escreval("O valor '", pegar, "' é invalido!! Tente novamente.")
+fimescolha
+ate valido = verdadeiro
+fimprocedimento
+
+funcao validarnum(tecla: caracter): inteiro
+var
+validado: inteiro
+inicio
+
+enquanto (asc(tecla)< 47) e (asc(tecla) > 58) faca
+escreval("O caracter '", tecla, "' é invalidado!!Digite novamente: ")
+leia(tecla)
+fimenquanto
+validado <- (asc(tecla) - 48)
+retorne validado
+
+fimfuncao
+
+procedimento inserir(passageiro: caracter)  // Inserção de valores nos vetores
+var
+i:inteiro
+inicio
+se (num > 0) e (num + contar(pegar) <= 2) entao
+para i de 1 ate num faca
+   se scanoa[i] = "" entao
+      scanoa[i] <- passageiro
+      icanoa[i] <- 1
+   senao
+      se i = 1 entao
+         scanoa[2] <- passageiro
+         icanoa[2] <- 1
+      senao
+         scanoa[1] <- passageiro
+         icanoa[2] <- 1
+      fimse
+   fimse
+
+fimpara
+fimse
+
+fimprocedimento
+
+procedimento remover(c_m: caracter)  // Remoção de valores nos vetores
+var
+i, n: inteiro
+inicio
+escolha c_m
+
+caso "C"
+para i de 1 ate 2 faca
+   se scanoa[i] = "Canibal" entao
+      se (n < qtd) entao
+         scanoa[i] <- ""
+         icanoa[i] <- 0
+         n <- n + 1
+      fimse
+   fimse
+fimpara
+caso "M"
+para i de 1 ate 2 faca
+   se scanoa[i] = "Missionário" entao
+      se (n < qtd) entao
+         scanoa[i] <- ""
+         icanoa[i] <- 0
+         n <- n + 1
+      fimse
+   fimse
+fimpara
+caso "T"
+scanoa[1] <- ""
+icanoa[1] <- 0
+scanoa[2] <- ""
+icanoa[2] <- 0
+fimescolha
+fimprocedimento
+
+procedimento pegar_passageiro(c_m: caracter) // Pegar o passageiro de determinada margem e INSERIR na canoa
+var
+passageiro, spassageiro, slado, passageiro2, msg, c_m2: caracter
+ipassageiro, i2passageiro: inteiro
+inicio
+
+se c_m <> "N" entao
+escolha lado
+caso 1
+   escolha c_m
+   caso "C"
+      passageiro <- "Canibal"
+      passageiro2 <- "Missionário"
+      spassageiro <- "Canibais"
+      ipassageiro <- dir_c
+      i2passageiro <- esq_c
+      slado <- "Direita"
+      c_m2 <- "M"
+   caso "M"
+      passageiro <- "Missionário"
+      passageiro2 <- "Canibal"
+      spassageiro <- "Missionários"
+      ipassageiro <- dir_m
+      i2passageiro <- esq_m
+      slado <- "Esquerda"
+      c_m2 <- "C"
+   fimescolha
+caso 2
+   escolha c_m
+   caso "C"
+      passageiro <- "Canibal"
+      passageiro2 <- "Missionário"
+      spassageiro <- "Canibais"
+      ipassageiro <- esq_c
+      i2passageiro <- dir_c
+      slado <- "direita"
+      c_m2 <- "M"
+   caso "M"
+      passageiro <- "Missionário"
+      passageiro2 <- "Canibal"
+      spassageiro <- "Missionários"
+      ipassageiro <- esq_m
+      i2passageiro <- dir_m
+      slado <- "esquerda"
+      c_m2 <- "C"
+   fimescolha
+fimescolha
+
+se contar_margem(c_m) > 0 entao
+   cabecalho()
+   visualizacao(visao)
+   escreva("Digite a quantidade de ", spassageiro, " que você quer COLOCAR na canoa: ")
+   leia(snum)
+   num <- validarnum(snum)
+
+   enquanto (ipassageiro < num) ou (num < 0) faca
+      cabecalho()
+      visualizacao(visao)
+      escreval("A quantidade é invalida!")
+      escreva("Quantos ", spassageiro, " vão subir: ")
+      leia(snum)
+      num <- validarnum(snum)
+   fimenquanto
+
+   se (num > 0) e ((num + contar("C") + contar("M")) <= 2) entao
+      inserir(passageiro)
+        se (num > 0) e (num <= 2) entao
+           escolha c_m
+           caso "C"
+              se lado = 1 entao
+                 dir_c <- dir_c - num
+              senao
+                 esq_c <- esq_c - num
+              fimse
+           caso "M"
+              se lado = 1 entao
+                 dir_m <- dir_m - num
+              senao
+                 esq_m <- esq_m - num
+              fimse
+           fimescolha
+        fimse
+      se (contar_margem(c_m2) > 0) e (contar("C") + contar("M") < 2) entao
+         cabecalho()
+         visualizacao(visao)
+         msg <- "Ainda tem um espaço na canoa. Quer COLOCAR um " + passageiro2 + "? [S/N]: "
+         entrada_teclas(msg,"S", "N", "n")
+      fimse
+   fimse
+
+
+   se (pegar = "S") e (ipassageiro > 0) entao
+      se scanoa[1] = "" entao
+         icanoa[1] <- 1
+         scanoa[1] <- passageiro2
+      senao
+         icanoa[2] <- 2
+         scanoa [2] <- passageiro2
+      fimse
+      escolha lado
+      caso 1
+         escolha c_m
+         caso "C"
+            dir_m <- dir_m - 1
+         caso "M"
+            dir_c <- dir_c - 1
+         fimescolha
+      caso 2
+         escolha c_m
+         caso "C"
+            esq_m <- esq_m - 1
+         caso "M"
+            esq_c <- esq_c - 1
+         fimescolha
+      fimescolha
+   fimse
+senao
+   cabecalho()
+   visualizacao(visao)
+   escreva("Não tem nenhum ", passageiro, " na margem ", slado, "...")
+   leia(null)
+fimse
+fimse
+
+fimprocedimento
+
+procedimento valores_deixar_passageiro (c_m: caracter) // Procedimento auxiliar para valores textuais das mensagens
+inicio
+escolha c_m
+
+caso "C"
+passageiro <- "Canibal"
+spassageiro <- "Canibais"
+caso "M"
+passageiro <- "Missionário"
+spassageiro <- "Missionários"
+fimescolha
+
+escolha lado
+caso 1
+slado <- "ESQUERDO"
+caso 2
+slado <- "DIREITO"
+fimescolha
+fimprocedimento
+
+procedimento deixar_passageiro(c_m: caracter) // Deixar o passageiro em determinada margem e REMOVER da canoa
+var
+sair: logico
+inicio
+
+se c_m <> "N" entao
+
+valores_deixar_passageiro(c_m)    // Passar o devido valor textual para demonstrar nas mensagens
+
+se (contar ("C") = 0) e (contar("M") = 0) entao
+   escreval("A canoa esta VAZIA...")
+   sair <- verdadeiro
+senao
+   sair <- falso
+   se contar(c_m) = 0 entao
+      enquanto contar(c_m) = 0 faca
+         escreval("Não consta nenhum ", passageiro, " na canoa!!Você deve selecionar novamente.")
+         entrada_teclas2("'C' p/ deixar (Canibais), 'M' (Missionários), 'T' (todos) ou 'N' (Nunhum): ", "C", "M", "T", "N")
+         c_m <- pegar
+         valores_deixar_passageiro(c_m)
+      fimenquanto
+   fimse
+fimse
+se sair = falso entao
+   escolha c_m
+   caso "T"
+      se lado = 1 entao
+         esq_c <- esq_c + contar("C")
+         esq_m <- esq_m + contar("M")
+      senao
+         dir_c <- dir_c + contar("C")
+         dir_m <- dir_m + contar("M")
+      fimse
+      remover(c_m)
+   outrocaso
+      escreva("Quantos ", spassageiro, " vão DESCER do lado ", slado,": ")
+      leia(qtd)
+      escreval("")
+      enquanto (contar(c_m) < qtd) ou (qtd < 0) faca
+         escreval("A quantidade é maior que a possível!")
+         escreva("Quantos ", spassageiro, " vão descer do lado ", slado,": ")
+         leia(qtd)
+      fimenquanto
+
+      se qtd > 0 entao
+         remover(c_m)
+      fimse
+      // Situações de cada lado
+      escolha c_m
+      caso "C"
+         se lado = 1 entao
+            esq_c <- esq_c + qtd
+         senao
+            dir_c <- dir_c + qtd
+         fimse
+      caso "M"
+         se lado = 1 entao
+            esq_m <- esq_m + qtd
+         senao
+            dir_m <- dir_m + qtd
+         fimse
+      fimescolha
+   fimescolha
+fimse
+fimse
+
+fimprocedimento
+
+funcao contar(c_m: caracter): inteiro  // Retorna a quantidade atual de passageiros que a estão na CANOA
+var
+i, n: inteiro
+inicio
+escolha c_m
+
+caso "C"
+para i de 1 ate 2 faca
+   se scanoa[i] = "Canibal" entao
+      n <- n + 1
+   fimse
+fimpara
+caso "M"
+para i de 1 ate 2 faca
+   se scanoa[i] = "Missionário" entao
+      n <- n + 1
+   fimse
+fimpara
+caso "T"
+n <- 1
+outrocaso
+n<- -1
+fimescolha
+
+retorne n
+fimfuncao
+
+funcao contar_margem(c_m: caracter): inteiro  // Retorna a quantidade atual de passageiros que a pessoa deseja PEGAR na margem
+var
+i, n: inteiro
+inicio
+escolha lado
+caso 1
+escolha c_m
+caso "C"
+   n <- dir_c
+caso "M"
+   n <- dir_m
+fimescolha
+caso 2
+escolha c_m
+caso "C"
+   n <- esq_c
+caso "M"
+   n <- esq_m
+fimescolha
+fimescolha
+
+retorne n
+
+fimfuncao
+
+inicio   // Main
+
+dir_c <- 3
+dir_m <- 3
+
+cabecalho()
+
+repita // Estrutura principal do JOGO
+
+para lado de 1 ate 2 faca  // Definição de lados (1 e 2)
+
+   cabecalho()
+   se lado = 1 entao
+      visao <- verdadeiro
+   senao
+      cabecalho()
+      visao <- falso
+   fimse
+   visualizacao(visao)
+
+   se (esq_c + esq_m <> 6) entao
+      repita // Dinamica de valores (CANOA x LADO DA MARGEM)
+
+         entrada_teclas("Digite 'C' para PEGAR (Canibais), 'M' para (Missionários) ou 'N' (Nenhum): ", "C", "M", "N")
+         pegar_passageiro(pegar)
+         num2 <- contar("C") + contar("M")
+
+         se (num2 < 1) ou (num2 > 2) entao       // Solicita para o jogador um novo numero devido digitado fora do intervalo
+            cabecalho()
+            visualizacao(visao)
+            escreval("Quantidade invalida! Voce deve selecionar novamente!")
+            vlrinvalido <- verdadeiro
+         senao
+            cabecalho()
+            se lado = 1 entao
+               visualizacao(falso)
+            senao
+               visualizacao(verdadeiro)
+            fimse
+            validar_situacao()
+         fimse
+
+         se vlrinvalido = falso entao
+            entrada_teclas2("'C' p/ DEIXAR (Canibais), 'M' (Missionários), 'T' (todos) ou 'N' (Nenhum): ", "C", "M", "T", "N")
+            deixar_passageiro(pegar)
+         fimse
+
+         vlrinvalido <- falso
+         validar_situacao()
+
+      ate (num2 > 0) e (num2 <= 2)  // Validação até o numéro de passageiros ser no min 1 e no max 2
+
+   fimse
+
+fimpara // Mudando de lado
+
+// Validação de situação atual dos lados, qualquer vacilo você perde!!
+validar_situacao()
+
+ate (dir_c + dir_m = 0) e (esq_c + esq_m = 6)
+
+// Após sair pela estrutura principal, ATENDENDO A CONDIÇÃO DA ESTRUTURA PRICIPAL, Ganhamos!
+cabecalho()
+visualizacao(falso)
+escreval("+------------------------------------------------------------------------------+")
+escreval("|                           PARABÉNS VOCÊ VENCEU!!                             |")
+escreval("+------------------------------------------------------------------------------+")
+
+fimalgoritmo
