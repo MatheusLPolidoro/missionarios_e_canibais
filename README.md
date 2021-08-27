@@ -1,4 +1,4 @@
-<h1> <img src="https://media0.giphy.com/media/7JaWJOLvYRDZNd2Ani/giphy.gif?cid=ecf05e478q8f0eqzodn1lzynv3bjfmqhfkbhdiq1pf36wqq5&rid=giphy.gif&ct=s" alt="Anjo" width="40"> Missionários e Canibais <img src="https://media2.giphy.com/media/QpSyf04rIOOrbdEpTV/giphy.gif?cid=ecf05e475ds0zpn1jja1fxkb2qbeusrhmy82ss81purqz2vj&rid=giphy.gif&ct=s" alt="Demonio" width = "40"> </h1>
+<h1> <img src="https://raw.githubusercontent.com/MatheusLPolidoro/Missionarios-e-Canibais/main/Missionarios%20e%20canibais/image/anjo.gif" alt="Anjo" width="40"> Missionários e Canibais <img src="https://raw.githubusercontent.com/MatheusLPolidoro/Missionarios-e-Canibais/main/Missionarios%20e%20canibais/image/demon.gif" alt="Demonio" width = "40"> </h1>
 <h2>OBJETIVO</h2>
 <p>AJUDAR A TRAVESSIA DOS MISSIONARIOS E DOS CANIBAIS ENTRE AS MARGENS DO RIO</p>
 <h2>REGRAS</h2>
