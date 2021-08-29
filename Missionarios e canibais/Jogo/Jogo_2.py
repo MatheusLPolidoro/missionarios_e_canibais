@@ -67,8 +67,8 @@ def SobePassageiro (lado, plataformas):
                     while plataformas[lado + pas] < 1:
                         mc.Cabecalho(lado, plataformas)
                         print('Sem' + StrPas[pas] + ' na margem...')
-                        pas = mc.EntradaTexto(" -'C' para PEGAR (Canibais), 'M' (Missionários), 'N' (Nenhum): ", ['M', 'C', 'N'], lado, plataformas)
-                    if plataformas[lado + pas] > 0:
+                        pas = mc.EntradaTexto(" -'C' para PEGAR (Canibais), 'M' (Missionários): ", ['M', 'C'], lado, plataformas)
+                    if pas in plataformas and plataformas[lado + pas] > 0:
                         num = mc.EntradaNum('Quantidade de' + StrPas[pas + '2'] + 'que você quer COLOCAR na canoa:', lado, plataformas)
                         while plataformas[lado + pas] < num or num < 0 or num > 2 or num + plataformas['C'] + plataformas['M'] > 2:
                             mc.Cabecalho(lado, plataformas)
@@ -82,6 +82,9 @@ def SobePassageiro (lado, plataformas):
                             if msg == 'S':
                                 plataformas[TrvPas[pas]] = plataformas[TrvPas[pas]] + 1
                                 plataformas[lado + TrvPas[pas]] = plataformas[lado + TrvPas[pas]] - 1
+                    elif pas == 'N':
+                        print('Nenhum passageiro subiu...', end='', flush=True)
+                        input()   
                     else:
                         mc.Cabecalho(lado, plataformas)
                         print('Sem ' + StrPas[pas] + 'na margem...')

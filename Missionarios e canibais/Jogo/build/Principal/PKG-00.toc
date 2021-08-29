@@ -1,5 +1,5 @@
 ('C:\\material_de_estudos\\etec\\PA\\aula1\\Missionarios e '
- 'canibais\\build\\Principal\\PKG-00.pkg',
+ 'canibais\\Missionário e Canibais\\build\\Principal\\PKG-00.pkg',
  {'BINARY': 1,
   'DATA': 1,
   'EXECUTABLE': 1,
@@ -10,7 +10,7 @@
   'SPLASH': 1},
  [('PYZ-00.pyz',
    'C:\\material_de_estudos\\etec\\PA\\aula1\\Missionarios e '
-   'canibais\\build\\Principal\\PYZ-00.pyz',
+   'canibais\\Missionário e Canibais\\build\\Principal\\PYZ-00.pyz',
    'PYZ'),
   ('struct',
    'c:\\users\\mattp\\appdata\\local\\programs\\python\\python39\\lib\\struct.pyo',
@@ -41,7 +41,7 @@
    'PYSOURCE'),
   ('Principal',
    'C:\\material_de_estudos\\etec\\PA\\aula1\\Missionarios e '
-   'canibais\\Principal.py',
+   'canibais\\Missionário e Canibais\\Principal.py',
    'PYSOURCE'),
   ('python39.dll',
    'c:\\users\\mattp\\appdata\\local\\programs\\python\\python39\\python39.dll',
@@ -102,11 +102,11 @@
    'BINARY'),
   ('base_library.zip',
    'C:\\material_de_estudos\\etec\\PA\\aula1\\Missionarios e '
-   'canibais\\build\\Principal\\base_library.zip',
+   'canibais\\Missionário e Canibais\\build\\Principal\\base_library.zip',
    'DATA'),
   ('Principal.exe.manifest',
    'C:\\material_de_estudos\\etec\\PA\\aula1\\Missionarios e '
-   'canibais\\build\\Principal\\Principal.exe.manifest',
+   'canibais\\Missionário e Canibais\\build\\Principal\\Principal.exe.manifest',
    'BINARY'),
   ('pyi-windows-manifest-filename Principal.exe.manifest', '', 'OPTION')],
  False,
