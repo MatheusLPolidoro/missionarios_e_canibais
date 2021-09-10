@@ -15,4 +15,5 @@ def main():
         if comeu == True:
             break
     mc.Final(comeu,lado, plataformas)
+main()
 
