@@ -16,7 +16,7 @@ def Cabecalho(lado,plataformas):
     print(' |', '{: ^84}'.format('2. SOMENTE 2 PASSAGEIROS PODEM SUBIR NA CANOA POR VEZ'), '|')
     print(' |', '{: ^84}'.format('3. NÃO PODE DEIXAR MISSIONÁRIOS EM LOCAIS COM MAIS CANIBAIS'), '|')
     print(' |', ' ' * 84, '|')
-    print('+', '-' * 84, '+\n')
+    print(' +', '-' * 84, '+\n')
     # Apresenta o status do jogo e onde o jogador está
     print(' +', '-'*20, '+', ' '*6, '+', '-'*20, '+', ' '*6, '+', '-'*20, '+')
     print(' |', '{: ^20}'.format('ESQUERDO'), '|', ' '*6,'|', '{: ^20}'.format('CANOA'),'|', ' '*6,'|', '{: ^20}'.format('DIREITO'),'|')
