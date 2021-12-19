@@ -1,5 +1,5 @@
 <h1> <img src="https://github.com/MatheusLPolidoro/Missionarios-e-Canibais/blob/main/Missionarios-e-canibais/image/anjo.gif" alt="Anjo" width="40"> Missionários e Canibais <img src="https://github.com/MatheusLPolidoro/Missionarios-e-Canibais/blob/main/Missionarios-e-canibais/image/demon.gif" alt="Demonio" width = "40"> </h1>
-<a href="https://missionarios-e-canibais.vercel.app/" alt="Jogo">Clique aqui</a> para abrir o jogo no seu navegador.
+<a href="https://matheuslpolidoro.github.io/Missionarios-e-Canibais/projeto-web/" alt="Jogo">Clique aqui</a> para abrir o jogo no seu navegador.
 <h2>OBJETIVO</h2>
 <p>AJUDAR A TRAVESSIA DOS MISSIONARIOS E DOS CANIBAIS ENTRE AS MARGENS DO RIO</p>
 <h2>REGRAS</h2>
