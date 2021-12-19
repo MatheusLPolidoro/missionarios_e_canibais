@@ -9,3 +9,8 @@
   <li>SOMENTE 2 PASSAGEIROS PODEM SUBIR NA CANOA POR VEZ</li>
   <li>NÃO PODE DEIXAR MISSIONÁRIOS EM LOCAIS COM MAIS CANIBAIS</li>
 </ol>
+<footer class="site-footer h-card">
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        Projeto Pessoal de código aberto. <a href="https://github.com/MatheusLPolidoro/Missionarios-e-Canibais/edit/main/README.md">Create by: MatheusLPolidoro.</a>.
+</div>
+</footer>
