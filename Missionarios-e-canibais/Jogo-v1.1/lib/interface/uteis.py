@@ -9,7 +9,6 @@ cores = {
     'original': close(),
     'branco': branco(),
     'azul': azul(),
-    'azul2': azul2(),
     'amarelo': amarelo(),
     'verde': verde(),
     'vermelho': vermelho(),
